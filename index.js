@@ -1,13 +1,15 @@
-const { shapes } = require('./lib/shapes');
+const { Circle, Square, Triangle } = require('./lib/shapes');
 const inquirer = require('inquirer');
 const { writeFile } = require('fs/promises');
 
+var svgEl = [];
 
 inquirer.prompt([
     {
         type: 'input',
         name: 'text',
         message: 'What should the text be on your image? (max. 3 characters)',
+        validate: (input) => input.length <= 3
     },
     {
         type: 'input',
@@ -18,7 +20,7 @@ inquirer.prompt([
         type: 'list',
         name: 'shape',
         message: 'What shape should your logo be?',
-        choices: ['Circle', 'Square', 'Star']
+        choices: ['Circle', 'Square', 'Triangle']
     },
     {
         type: 'input',
@@ -26,15 +28,22 @@ inquirer.prompt([
         message: 'What color should your logo shape be?'
     }
 ]).then(
-    (answers) => {switch (answers.shape) {
-        case 'Circle': console.log('Circle');
+    (answers) => {
+        let chosenShape; 
+        switch (answers.shape) {
+        case 'Circle': chosenShape = new Circle(answers.text, answers.textColor, answers.shapeColor, answers.shape);
+        svgEl.push(chosenShape);
         break;
-        case 'Square': console.log('Square');
+        case 'Square': chosenShape = new Square(answers.text, answers.textColor, answers.shapeColor, answers.shape);
+        svgEl.push(chosenShape);
         break;
-        case 'Star': console.log('Star');
+        case 'Triangle': chosenShape = new Circle(answers.text, answers.textColor, answers.shapeColor, answers.shape);
+        svgEl.push(chosenShape);
         break;
     }
 }
+).then((res) => 
+    console.log(svgEl)
 )
 //.then(console.log('Complete'))
 
