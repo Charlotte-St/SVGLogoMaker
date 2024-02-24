@@ -45,8 +45,6 @@ inquirer.prompt([
 ).then((res) => 
     console.log(generatedLogo)
 )
-//.then(console.log('Complete'))
+.then((res) => console.log('Generated logo.svg'))
 
 //Generate .svg files as logo.svg
-
-//Console log 'Generated logo.svg'
