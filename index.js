@@ -1,16 +1,16 @@
-//require ./lib/shapes.js
 const { shapes } = require('./lib/shapes');
-//require inquirer
 const inquirer = require('inquirer');
-//require fs
 const { writeFile } = require('fs/promises');
-//Inquirer prompts
+
+
 inquirer.prompt([
     {
+        type: 'input',
         name: 'text',
         message: 'What should the text be on your image? (max. 3 characters)',
     },
     {
+        type: 'input',
         name: 'textColor',
         message: 'What color should your text be?'
     },
@@ -21,14 +21,22 @@ inquirer.prompt([
         choices: ['Circle', 'Square', 'Star']
     },
     {
+        type: 'input',
         name: 'shapeColor',
         message: 'What color should your logo shape be?'
     }
-]).then(console.log('Complete'))
-//Text max three characters
-//Text color
-//Shape (pick list)
-//Shape color
+]).then(
+    (answers) => {switch (answers.shape) {
+        case 'Circle': console.log('Circle');
+        break;
+        case 'Square': console.log('Square');
+        break;
+        case 'Star': console.log('Star');
+        break;
+    }
+}
+)
+//.then(console.log('Complete'))
 
 //Generate .svg files as logo.svg
 
