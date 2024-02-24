@@ -31,14 +31,16 @@ inquirer.prompt([
 ]).then(
     (answers) => {
         let chosenShape; 
+        let formattedTextColor = answers.textColor.replace(/\s/g, '');
+        let formattedShapeColor = answers.shapeColor.replace(/\s/g, '');
         switch (answers.shape) {
-        case 'Circle': chosenShape = new Circle(answers.text, answers.textColor, answers.shapeColor, answers.shape);
+        case 'Circle': chosenShape = new Circle(answers.text, formattedTextColor, formattedShapeColor, answers.shape);
         generatedLogo = chosenShape.render();
         break;
-        case 'Square': chosenShape = new Square(answers.text, answers.textColor, answers.shapeColor, answers.shape);
+        case 'Square': chosenShape = new Square(answers.text, formattedTextColor, formattedShapeColor, answers.shape);
         generatedLogo = chosenShape.render();
         break;
-        case 'Triangle': chosenShape = new Triangle(answers.text, answers.textColor, answers.shapeColor, answers.shape);
+        case 'Triangle': chosenShape = new Triangle(answers.text, formattedTextColor, formattedShapeColor, answers.shape);
         generatedLogo = chosenShape.render();
         break;
     }
@@ -48,9 +50,6 @@ inquirer.prompt([
     "./examples/logo.svg",
     generatedLogo
   );
-  //console.log(typeof res)
 }
 )
 .then((res) => console.log('Generated logo.svg'))
-
-//Generate .svg files as logo.svg
