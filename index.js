@@ -1,5 +1,6 @@
 const { Circle, Square, Triangle } = require('./lib/shapes');
 const inquirer = require('inquirer');
+const { join } = require('path');
 const { writeFile } = require('fs/promises');
 
 var generatedLogo;
@@ -42,8 +43,13 @@ inquirer.prompt([
         break;
     }
 }
-).then((res) => 
-    console.log(generatedLogo)
+).then((res) => {
+    return writeFile(
+    "./examples/logo.svg",
+    generatedLogo
+  );
+  //console.log(typeof res)
+}
 )
 .then((res) => console.log('Generated logo.svg'))
 
