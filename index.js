@@ -2,7 +2,7 @@ const { Circle, Square, Triangle } = require('./lib/shapes');
 const inquirer = require('inquirer');
 const { writeFile } = require('fs/promises');
 
-var svgEl = [];
+var generatedLogo;
 
 inquirer.prompt([
     {
@@ -32,18 +32,18 @@ inquirer.prompt([
         let chosenShape; 
         switch (answers.shape) {
         case 'Circle': chosenShape = new Circle(answers.text, answers.textColor, answers.shapeColor, answers.shape);
-        svgEl.push(chosenShape);
+        generatedLogo = chosenShape.render();
         break;
         case 'Square': chosenShape = new Square(answers.text, answers.textColor, answers.shapeColor, answers.shape);
-        svgEl.push(chosenShape);
+        generatedLogo = chosenShape.render();
         break;
         case 'Triangle': chosenShape = new Circle(answers.text, answers.textColor, answers.shapeColor, answers.shape);
-        svgEl.push(chosenShape);
+        generatedLogo = chosenShape.render();
         break;
     }
 }
 ).then((res) => 
-    console.log(svgEl)
+    console.log(generatedLogo)
 )
 //.then(console.log('Complete'))
 
