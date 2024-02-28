@@ -9,7 +9,7 @@ inquirer.prompt([
     {
         type: 'input',
         name: 'text',
-        message: 'What should the text be on your image? (max. 3 characters)',
+        message: 'What should the text be on your logo? (max. 3 characters)',
         validate: (input) => input.length < 4
     },
     {
